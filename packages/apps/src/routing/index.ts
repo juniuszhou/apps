@@ -11,6 +11,7 @@ import accounts from './accounts';
 import addressbook from './addressbook';
 import contracts from './contracts';
 import democracy from './democracy';
+import derive from './derive';
 import explorer from './explorer';
 import extrinsics from './extrinsics';
 import js from './js';
@@ -26,6 +27,7 @@ const routes: Routes = appSettings.uiMode === 'light'
     transfer,
     staking,
     democracy,
+    derive,
     null,
     accounts,
     addressbook,
@@ -38,6 +40,7 @@ const routes: Routes = appSettings.uiMode === 'light'
     transfer,
     staking,
     democracy,
+    derive,
     null,
     accounts,
     addressbook,

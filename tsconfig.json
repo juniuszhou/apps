@@ -13,6 +13,7 @@
       "@polkadot/app-contracts/*": [ "packages/app-contracts/src/*" ],
       "@polkadot/app-democracy": [ "packages/app-democracy/src" ],
       "@polkadot/app-democracy/*": [ "packages/app-democracy/src/*" ],
+      "@polkadot/app-derive/":  [ "packages/app-derive/src" ],
       "@polkadot/app-extrinsics": [ "packages/app-extrinsics/src" ],
       "@polkadot/app-extrinsics/*": [ "packages/app-extrinsics/src/*" ],
       "@polkadot/app-explorer": [ "packages/app-explorer/src" ],
