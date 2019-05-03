@@ -10,7 +10,6 @@ import { AccountId, Option } from '@polkadot/types';
 import { drr } from '../util/drr';
 
 function allBonds (api: ApiInterface$Rx, stashIds: Array<AccountId>) {
-  console.log('IN ALLBONDS', stashIds);
   return combineLatest(
     // FIXME Convert to multi
     stashIds.map((id) =>
@@ -23,16 +22,16 @@ function allBonds (api: ApiInterface$Rx, stashIds: Array<AccountId>) {
  * @description From the list of stash accounts, retrieve the list of controllers
  */
 export function controllers (api: ApiInterface$Rx) {
-  console.log('V4 1ELF!!!! YEAHYEAH')
+  console.log('V4 CONTROLLER')
   return (): Observable<[Array<AccountId>, Array<Option<AccountId>>]> =>
-  (api.query.session.validators() as any as Observable<[Array<AccountId>, any]>)
-    .pipe(
-      switchMap(([stashIds]) =>
-        combineLatest([
-          of(stashIds),
-          allBonds(api, stashIds)
-        ])
-      ),
-      drr()
-    );
+    (api.query.session.validators() as any as Observable<Array<AccountId>>)
+      .pipe(
+        switchMap((stashIds) =>
+          combineLatest([
+            of(stashIds),
+            allBonds(api, stashIds)
+          ])
+        ),
+        drr()
+      );
 }
