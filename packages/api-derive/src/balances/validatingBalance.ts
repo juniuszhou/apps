@@ -13,13 +13,21 @@ import { drr } from '../util/drr';
 import { votingBalance } from './votingBalance';
 import { votingBalancesNominatorsFor } from './votingBalancesNominatorsFor';
 
+/**
+ * @name validatingBalance(<AccountId | AccountIndex | Address | string>) : `DerivedBalances`
+ * @description
+ * Returns an object of relevant information related to an accounts votingBalance.
+ */
+
 export function validatingBalance (api: ApiInterface$Rx) {
   return (address: AccountId | AccountIndex | Address | string): Observable<DerivedBalances> => {
+    console.log('validatingBalance address', address)
     return combineLatest([
       votingBalance(api)(address),
       votingBalancesNominatorsFor(api)(address)
     ]).pipe(
       map(([balance, nominators]) => {
+        console.log("balance", balance,'nominators', nominators)
         const nominatedBalance = nominators.reduce(
           (total: BN, nominatorBalance: DerivedBalances) =>
             total.add(nominatorBalance.votingBalance),

@@ -13,8 +13,15 @@ import { drr } from '../util/drr';
 
 const EMPTY_ACCOUNT = new AccountId(new Uint8Array(32));
 
+/**
+ * @name votingBalance(<AccountIndex | AccountId | Address | string>) : `<DerivedBalances>`
+ * @description
+ * Returns an object of relevant information related to an accounts voting balance of type [[DerivedBalances]].
+ */
+
 export function votingBalance (api: ApiInterface$Rx) {
   return (address: AccountIndex | AccountId | Address | string): Observable<DerivedBalances> => {
+    console.log('In votingBalance!!', address)
     return idAndIndex(api)(address).pipe(
       switchMap(([accountId]) =>
         (accountId

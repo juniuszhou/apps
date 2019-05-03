@@ -30,7 +30,7 @@ class Developer extends React.PureComponent<Props, State> {
 
   constructor (props: Props) {
     super(props);
-
+    console.log(getTypeRegistry())
     const types = store.get('types') || {};
     const names = Object.keys(types);
 

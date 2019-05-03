@@ -15,19 +15,22 @@ const DAVE = '5DAAnrj7VHTznn2AWBemMuyBwZWs6FNFjdyVXUeYum3PTXFy';
 const DAVEindex = 'F7XB';
 
 type Props = AppProps & I18nProps & {
-  balances_fees: any,
+  state_getMetadata: any,
   balances_validatingBalance: any,
   balances_validatingBalances: any,
   balances_votingBalance: any,
   balances_votingBalances: any,
-  balances_votingBalancesNominatorFor: any
+  balances_votingBalancesNominatorsFor: any
 };;
 
 class App extends React.PureComponent<Props> {
   render () {
-    if (this.props) {
-      console.log('this.props', this.props)
-    }
+    this.props.state_getMetadata && console.log('state_getMetadata', this.props.state_getMetadata.version)
+   // console.log('this.props.balances_validatingBalance', this.props.balances_validatingBalance);
+    //console.log('this.props.balances_validatingBalances', this.props.balances_validatingBalances);
+    // console.log('this.props.balances_votingBalance', this.props.balances_votingBalance);
+    // console.log('this.props.balances_votingBalances', this.props.balances_votingBalances);
+    console.log('this.props.balances_votingBalancesNominatorsFor', this.props.balances_votingBalancesNominatorsFor);
 
     return (
       <main>
@@ -39,10 +42,16 @@ class App extends React.PureComponent<Props> {
 }
 
 export default withCalls<Props>(
-  ['derive.balances.fees', { params: [DAVE]  }],
-  ['derive.balances.validatingBalance', { params: [DAVE] }],
-  ['derive.balances.validatingBalances', {}],
-  ['derive.balances.votingBalance', {}],
-  ['derive.balances.votingBalances', {}],
-  ['derive.balances.votingBalancesNominatorFor', { params: [DAVEindex] }]
+  'rpc.state.getMetadata',
+  // ['derive.balances.validatingBalance', { params: ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY'] }],
+  // ['derive.balances.validatingBalances', {params: [[
+  //   '5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY',
+  //   '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty'
+  // ]]
+  // }],
+  //['derive.balances.votingBalance', { params: ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY']}],
+  // ['derive.balances.votingBalances', {params: [
+  //   ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY', '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty']
+  // ]}],
+  ['derive.balances.votingBalancesNominatorsFor', { params: ['5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'] }]
 )(App);

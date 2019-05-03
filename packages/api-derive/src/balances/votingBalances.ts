@@ -10,8 +10,25 @@ import { DerivedBalances } from '../types';
 import { drr } from '../util/drr';
 import { votingBalance } from './votingBalance';
 
+/**
+ * @name votingBalances(Array<AccountId | AccountIndex | Address | string>) : `Array<DerivedBalances>`
+ * @description
+ * Returns an array of [[DerivedBalances]]'s.
+ */
+
 export function votingBalances (api: ApiInterface$Rx) {
   return (addresses?: Array<AccountId | AccountIndex | Address | string>): Observable<Array<DerivedBalances>> => {
+    console.log('ADDRESSES votingBalances', addresses);
+
+    addresses[0].map((nomineeId, index) => {
+      console.log('nomineeId', nomineeId);
+      console.log('index', index);
+      return(
+        nomineeId
+      )
+    }
+    )
+
     return !addresses || !addresses.length
       ? of([]).pipe(drr())
       : combineLatest(addresses.map(votingBalance(api))).pipe(drr());

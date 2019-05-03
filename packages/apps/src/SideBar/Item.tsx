@@ -102,7 +102,7 @@ class Item extends React.PureComponent<Props> {
       return false;
     } else if (needsSudo) {
       if (!hasSudo) {
-        console.info('Disabling route sudo, no authority');
+        // console.info('Disabling route sudo, no authority');
         return false;
       }
     }
@@ -116,7 +116,7 @@ class Item extends React.PureComponent<Props> {
     });
 
     if (notFound.length !== 0) {
-      console.info(`Disabling route ${name}, API ${notFound} not available`);
+      // console.info(`Disabling route ${name}, API ${notFound} not available`);
     }
 
     return notFound.length === 0;

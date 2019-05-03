@@ -11,8 +11,15 @@ import { DerivedBalancesMap } from '../types';
 import { drr } from '../util/drr';
 import { validatingBalance } from './validatingBalance';
 
+/**
+ * @name **validatingBalances**(Array<AccountId | Address | string>) : `Array<Balance>`
+ * @description
+ * Returns an array containing the validated balances of the accounts passed as parameters.
+ */
+
 export function validatingBalances (api: ApiInterface$Rx) {
   return (accountIds: Array<AccountId | Address | string>): Observable<DerivedBalancesMap> => {
+    console.log('accountIds', accountIds)
     return !accountIds || !accountIds.length
       ? of({}).pipe(drr())
       : combineLatest(

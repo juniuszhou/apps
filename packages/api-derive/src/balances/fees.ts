@@ -10,6 +10,14 @@ import BN from 'bn.js';
 import { DerivedFees } from '../types';
 import { drr } from '../util/drr';
 
+/**
+ * @name fees() : `DerivedFees`
+ * @description
+ * Returns an object containing the combined results of the storage queries for
+ * all relevant fees as declared in the substrate chain spec.
+ * The return value is of type [[DerivedFees]].
+ */
+
 export function fees (api: ApiInterface$Rx) {
   return (): Observable<DerivedFees> => {
     return (combineLatest([

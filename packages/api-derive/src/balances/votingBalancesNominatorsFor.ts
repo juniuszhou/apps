@@ -12,12 +12,19 @@ import { DerivedBalances } from '../types';
 import { drr } from '../util/drr';
 import { votingBalances } from './votingBalances';
 
+/**
+ * @name votingBalancesNominatorsFor(<AccountId | AccountIndex | Address | string>) : `Array<DerivedBalances>`
+ * @description
+ * Returns balance information of type [[DerivedBalances]] for each stash account.
+ */
+
 export function votingBalancesNominatorsFor (api: ApiInterface$Rx) {
   return (address: AccountId | AccountIndex | Address | string): Observable<Array<DerivedBalances>> => {
+    console.log("votingBalancesNominatorsFor", address)
     return idAndIndex(api)(address).pipe(
       switchMap(([accountId]) =>
         accountId
-          ? (api.query.staking.nominatorsFor(accountId) as Observable<Vector<AccountId>>)
+          ? (api.query.staking.nominators(accountId) as Observable<Vector<AccountId>>)
           : of([] as Array<AccountId>)
       ),
       switchMap(votingBalances(api)),
