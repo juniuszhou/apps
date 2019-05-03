@@ -15,23 +15,14 @@ const DAVE = '5DAAnrj7VHTznn2AWBemMuyBwZWs6FNFjdyVXUeYum3PTXFy';
 const DAVEindex = 'F7XB';
 
 type Props = AppProps & I18nProps & {
-  state_getMetadata: any,
-  balances_validatingBalance: any,
-  balances_validatingBalances: any,
-  balances_votingBalance: any,
-  balances_votingBalances: any,
-  balances_votingBalancesNominatorsFor: any
-};;
+  staking_intentionsBalances: any,
+  staking_controllers: any
+};
 
 class App extends React.PureComponent<Props> {
   render () {
-    this.props.state_getMetadata && console.log('state_getMetadata', this.props.state_getMetadata.version)
-   // console.log('this.props.balances_validatingBalance', this.props.balances_validatingBalance);
-    //console.log('this.props.balances_validatingBalances', this.props.balances_validatingBalances);
-    // console.log('this.props.balances_votingBalance', this.props.balances_votingBalance);
-    // console.log('this.props.balances_votingBalances', this.props.balances_votingBalances);
-    console.log('this.props.balances_votingBalancesNominatorsFor', this.props.balances_votingBalancesNominatorsFor);
-
+    console.log('this.props.staking_intentionsBalances', this.props.staking_intentionsBalances);
+    console.log('this.props.staking_controllers', this.props.staking_controllers);
     return (
       <main>
         test
@@ -42,16 +33,6 @@ class App extends React.PureComponent<Props> {
 }
 
 export default withCalls<Props>(
-  'rpc.state.getMetadata',
-  // ['derive.balances.validatingBalance', { params: ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY'] }],
-  // ['derive.balances.validatingBalances', {params: [[
-  //   '5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY',
-  //   '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty'
-  // ]]
-  // }],
-  //['derive.balances.votingBalance', { params: ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY']}],
-  // ['derive.balances.votingBalances', {params: [
-  //   ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY', '5FHneW46xGXgs5mUiveU4sbTyGBzmstUspZC92UhjJM694ty']
-  // ]}],
-  ['derive.balances.votingBalancesNominatorsFor', { params: ['5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'] }]
+  'derive.staking.intentionsBalances',
+  ['derive.staking.controllers', { params: ['5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY'] }]
 )(App);
